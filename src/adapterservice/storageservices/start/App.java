@@ -21,15 +21,15 @@ public class App {
 			hostname = "localhost";
 		}
 
-		URI BASE_URI = new URI(protocol + hostname + port + "assignment2/");
+		URI BASE_URI = new URI(protocol + hostname + port + "adapter/");
 
-		System.out.println("Starting assignment2 standalone HTTP server...");
+		System.out.println("Starting adapter standalone HTTP server...");
 		JdkHttpServerFactory.createHttpServer(BASE_URI, createApp());
 		System.out.println("Server started on " + BASE_URI + "\n[kill the process to exit]");
 	}
 
 	public static ResourceConfig createApp() {
-		System.out.println("Starting assignment2 REST services...");
+		System.out.println("Starting adapeter REST services...");
 		return new MyApplicationConfig();
 	}
 }

@@ -105,40 +105,11 @@
                 </fileset>
             </copy>
         </target>
-    	  <target name="xmlRequests">
-    	    <echo message="XML requests" />
-    	    <java classname="introsde.rest.client.xml.ClientXml" classpath="build" fork="true">
-    	     
-    	      <classpath>
-    	        <fileset dir="${lib.dir}">
-    	          <include name="**/*.jar" />
-    	          <include name="*.jar" />
-    	        </fileset>
-    	      </classpath>
-    	    </java>
-    	  </target>
-    	
-
-    	  <target name="jsonRequests">
-    	    <echo message="JSON requests" />
-    	    <java classname="introsde.rest.client.json.ClientJson" classpath="build" fork="true">
-    	      <arg value="${url}"/>
-    	      <classpath>
-    	        <fileset dir="${lib.dir}">
-    	          <include name="**/*.jar" />
-    	          <include name="*.jar" />
-    	        </fileset>
-    	      </classpath>
-    	    </java>
-    	  </target>
-    	
-  	  <target name="execute.client" depends="install, xmlRequests, jsonRequests">
-  	    <echo message="End client requests - Assignment 2" />
-  	  </target>    	
+    	   	   	
     	
         <target name="start">
-            <echo message="app start systemlogic.businesslogicservices.rest.start.App in ${build.dir}" />
-            <java classname="introsde.rest.ehealth.App" classpath="${build.dir}" fork="true">
+            <echo message="app start final adapterservice.storageservices.start.App in ${build.dir}" />
+            <java classname="adapterservice.storageservices.start.App" classpath="${build.dir}" fork="true">
                 <arg value="$JAVA_OPTS  -cp" />
                 <classpath>
                     <path location="build" />
@@ -151,7 +122,7 @@
         </target>
         <!-- make sure you have created first the WebContent folder, including a META-INF folder, WEB-INF/web.xml file and WEB-INF/lib folder -->
         <target name="create.war" depends="install">
-            <war destfile="assignment2.war" webxml="${web.dir}/WebContent/WEB-INF/web.xml">
+            <war destfile="IntroSDEAdapter.war" webxml="${web.dir}/WebContent/WEB-INF/web.xml">
                 <fileset dir="${web.dir}/WebContent">
                     <include name="**/*.*" />
                 </fileset>
