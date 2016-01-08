@@ -14,20 +14,8 @@ import org.apache.http.client.utils.URIUtils;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
 
-import adapterservice.humanapi.rest.entity.ActivityEntity;
 import adapterservice.humanapi.rest.entity.AppUserEntity;
-import adapterservice.humanapi.rest.entity.BloodGlucoseEntity;
-import adapterservice.humanapi.rest.entity.BloodOxygenEntity;
 import adapterservice.humanapi.rest.entity.BloodPressureEntity;
-import adapterservice.humanapi.rest.entity.BmiEntity;
-import adapterservice.humanapi.rest.entity.BodyFatEntity;
-import adapterservice.humanapi.rest.entity.GeneticTraitEntity;
-import adapterservice.humanapi.rest.entity.HeartRateEntity;
-import adapterservice.humanapi.rest.entity.HeightEntity;
-import adapterservice.humanapi.rest.entity.HumanEntity;
-import adapterservice.humanapi.rest.entity.LocationEntity;
-import adapterservice.humanapi.rest.entity.ProfileEntity;
-import adapterservice.humanapi.rest.entity.SleepEntity;
 import adapterservice.humanapi.rest.entity.WeightEntity;
 import us.monoid.json.JSONArray;
 import us.monoid.json.JSONException;
@@ -211,75 +199,21 @@ public class HumanAPIClient {
         }
     }
 
-    /** Builds HumanEntity */
-    public HumanEntity humanEntity() {
-        return new HumanEntity(this);
-    }
-
-    /** Builds ProfileEntity */
-    public ProfileEntity profileEntity() {
-        return new ProfileEntity(this);
-    }
-
-    /** Builds BloodGlucoseEntity */
-    public BloodGlucoseEntity bloodGlucoseEntity() {
-        return new BloodGlucoseEntity(this);
-    }
-
-    /** Builds BloodOxygenEntity */
-    public BloodOxygenEntity bloodOxygenEntity() {
-        return new BloodOxygenEntity(this);
-    }
 
     /** Builds BloodPressureEntity */
     public BloodPressureEntity bloodPressureEntity() {
         return new BloodPressureEntity(this);
     }
 
-    /** Builds BmiEntity */
-    public BmiEntity bmiEntity() {
-        return new BmiEntity(this);
-    }
 
-    /** Builds BodyFatEntity */
-    public BodyFatEntity bodyFatEntity() {
-        return new BodyFatEntity(this);
-    }
-
-    /** Builds HeartRateEntity */
-    public HeartRateEntity heartRateEntity() {
-        return new HeartRateEntity(this);
-    }
-
-    /** Builds HeightEntity */
-    public HeightEntity heightEntity() {
-        return new HeightEntity(this);
-    }
 
     /** Builds WeightEntity */
     public WeightEntity weightEntity() {
         return new WeightEntity(this);
     }
 
-    /** Builds ActivityEntity */
-    public ActivityEntity activityEntity() {
-        return new ActivityEntity(this);
-    }
 
-    /** Builds LocationEntity */
-    public LocationEntity locationEntity() {
-        return new LocationEntity(this);
-    }
 
-    /** Builds SleepEntity */
-    public SleepEntity sleepEntity() {
-        return new SleepEntity(this);
-    }
-
-    /** Builds GeneticTraitEntity */
-    public GeneticTraitEntity geneticTraitEntity() {
-        return new GeneticTraitEntity(this);
-    }
 
     /**
      * Build AppUserEntity
