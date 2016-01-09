@@ -65,7 +65,7 @@ public class WeightResource {
 					 v.setCreated(df.format(date));
 					 v.setMeasureType(um);
 					 v.setValue(value);
-					 v.setIdExt(id+"w");
+					 v.setIdExt(id+"w"+personId);
 					 mv.getMeasure().add(v);
 				}
 		    	if (AdapterWS.sendMeasures(personId, mv)){

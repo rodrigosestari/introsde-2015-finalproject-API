@@ -67,7 +67,7 @@ public class BloodPressureResource {
 					 v.setCreated( df.format(date));
 					 v.setMeasureType(um);
 					 v.setValue(diastolic);
-					 v.setIdExt(id+"B");
+					 v.setIdExt(id+"b"+personId);
 					 mv.getMeasure().add(v);
 				}
 		    	
