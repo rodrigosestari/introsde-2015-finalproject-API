@@ -34,6 +34,7 @@
         <dependency org="org.apache.httpcomponents" name="project" rev="7"/>      
         <dependency org="us.monoid.web" name="resty" rev="0.3.2"/>
         <dependency org="net.iharder" name="base64" rev="2.3.8"/>
+        <dependency org="org.apache.httpcomponents" name="httpclient" rev="4.5.1"/>
         <dependency org="org.glassfish.jersey.core" name="jersey-common" rev="2.11"/>
         <dependency org="org.glassfish.jersey.core" name="jersey-server" rev="2.11"/>
         <dependency org="org.glassfish.jersey.core" name="jersey-client" rev="2.11"/>
