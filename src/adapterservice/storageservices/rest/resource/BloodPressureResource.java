@@ -58,7 +58,7 @@ public class BloodPressureResource {
 		    	mv = new MeasureHistory();
 		    	for (int i = 0; i < vai.length(); i++) {
 					JSONObject obj = vai.getJSONObject(i);
-					 um = obj.getString("BloodPressure");
+					 um = "BloodPressure";
 					 id = obj.getString("id");
 					 diastolic = obj.getInt("diastolic");
 					 date = JaxbUtil.stringToDate(obj.getString("createdAt"));

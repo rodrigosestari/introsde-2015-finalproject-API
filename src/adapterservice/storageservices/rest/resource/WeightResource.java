@@ -56,7 +56,7 @@ public class WeightResource {
 		    	mv = new MeasureHistory();
 		    	for (int i = 0; i < vai.length(); i++) {
 					JSONObject obj = vai.getJSONObject(i);
-					 um = obj.getString("weight");
+					 um = "weight";
 					 id = obj.getString("id");
 					 value = obj.getInt("value");					 
 					 date = JaxbUtil.stringToDate(obj.getString("createdAt"));
