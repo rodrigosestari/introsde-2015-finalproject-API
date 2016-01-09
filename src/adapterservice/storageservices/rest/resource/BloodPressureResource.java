@@ -2,7 +2,6 @@ package adapterservice.storageservices.rest.resource;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.ejb.LocalBean;
@@ -69,7 +68,6 @@ public class BloodPressureResource {
 					 v.setMeasureType(um);
 					 v.setValue(diastolic);
 					 v.setIdExt(id+"B");
-					 //vv.add(v);
 					 mv.getMeasure().add(v);
 				}
 		    	
