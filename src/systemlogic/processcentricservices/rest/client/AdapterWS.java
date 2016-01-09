@@ -10,13 +10,12 @@ import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
 import org.glassfish.jersey.client.ClientConfig;
 
-import systemlogic.businesslogicservices.view.MeasureListHistoryImportView;
+import systemlogic.businesslogicservices.jaxb.MeasureHistory;
 import util.JaxbUtil;
 
 public class AdapterWS {
@@ -32,15 +31,13 @@ public class AdapterWS {
 	static String type = "";
 	static Integer idPerson = null;
 
-	public static boolean sendMeasures (int idperson,MeasureListHistoryImportView v) {
+	public static boolean sendMeasures (int idperson,MeasureHistory v) {
 		
 		
-		uri = UriBuilder.fromUri("http://rodrigo-sestari-final-rest.herokuapp.com/finalprojectrest/").build();	
-
 		File xsdFile = new File("resource/measureImport.xsd");
 
-		String xml = JaxbUtil.jaxbToXml("systemlogic.businesslogicservices.view", v, xsdFile);
-		WebTarget service = client.target(uri.getPath() + "adapter/" + idperson);
+		String xml = JaxbUtil.jaxbToXml("systemlogic.businesslogicservices.jaxb", v, xsdFile);
+		WebTarget service = client.target("http://rodrigo-sestari-final-rest.herokuapp.com/finalprojectrest/adapter/" + idperson);
 
 		Response response = service.request(MediaType.APPLICATION_XML).accept(MediaType.APPLICATION_XML)
 				.post(Entity.xml(xml));

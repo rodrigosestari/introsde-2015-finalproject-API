@@ -2,6 +2,8 @@ package adapterservice.storageservices.rest.resource;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -17,11 +19,11 @@ import javax.ws.rs.core.UriInfo;
 
 import adapterservice.humanapi.rest.HumanAPIClient;
 import adapterservice.humanapi.rest.entity.BloodPressureEntity;
-import systemlogic.businesslogicservices.view.MeasureHistoryImportView;
-import systemlogic.businesslogicservices.view.MeasureListHistoryImportView;
+import systemlogic.businesslogicservices.jaxb.MeasureHistory;
 import systemlogic.processcentricservices.rest.client.AdapterWS;
 import us.monoid.json.JSONArray;
 import us.monoid.json.JSONObject;
+import util.JaxbUtil;
 
 @Stateless
 @LocalBean
@@ -43,9 +45,9 @@ public class BloodPressureResource {
 		String um = null;
 		String id = null;
 		Integer diastolic = null;
-		String date = null;
-		MeasureListHistoryImportView mv = null;
-		MeasureHistoryImportView v = null;
+		Date date = null;
+		MeasureHistory mv = null;
+		MeasureHistory.Measure v = null;
 		
 		try {
 			client = new HumanAPIClient(token);
@@ -53,22 +55,24 @@ public class BloodPressureResource {
 			BloodPressureEntity bloodPressureEntity;
 		    bloodPressureEntity = client.bloodPressureEntity();
 		    JSONArray vai = bloodPressureEntity.readings();
-		    if((null != null) &&  (vai.length() > 0)){
-		    	mv = new MeasureListHistoryImportView();
+		    if((null != vai) &&  (vai.length() > 0)){
+		    	mv = new MeasureHistory();
 		    	for (int i = 0; i < vai.length(); i++) {
 					JSONObject obj = vai.getJSONObject(i);
 					 um = obj.getString("unit");
 					 id = obj.getString("id");
 					 diastolic = obj.getInt("diastolic");
-					 date = obj.getString("createdAt");
+					 date = JaxbUtil.stringToDate(obj.getString("createdAt"));
 					 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");				     
-					 v = new MeasureHistoryImportView();
+					 v = new MeasureHistory.Measure();
 					 v.setCreated( df.format(date));
 					 v.setMeasureType(um);
 					 v.setValue(diastolic);
-					 v.setId_ext(id+"B");
+					 v.setIdExt(id+"B");
+					 //vv.add(v);
 					 mv.getMeasure().add(v);
 				}
+		    	
 		    	if (AdapterWS.sendMeasures(personId, mv)){
 		    		return Response.ok().build();
 		    	}else{
