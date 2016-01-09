@@ -3,6 +3,7 @@ package adapterservice.storageservices.rest.resource;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -22,6 +23,7 @@ import systemlogic.businesslogicservices.jaxb.MeasureHistory;
 import systemlogic.processcentricservices.rest.client.AdapterWS;
 import us.monoid.json.JSONArray;
 import us.monoid.json.JSONObject;
+import util.JaxbUtil;
 
 @Stateless
 @LocalBean
@@ -42,9 +44,8 @@ public class WeightResource {
 		String um = null;
 		String id = null;
 		Integer value = null;
-		String date = null;
+		Date date = null;
 		MeasureHistory mv = null;
-		ArrayList<MeasureHistory.Measure> vv =new ArrayList<>();
 		MeasureHistory.Measure v = null;
 		try {
 			client = new HumanAPIClient(token);
@@ -52,14 +53,14 @@ public class WeightResource {
 			 WeightEntity  weightEntity;			
 			 weightEntity = client.weightEntity();
 		    JSONArray vai = weightEntity.readings();
-		    if((null != null) &&  (vai.length() > 0)){
+		    if((null != vai) &&  (vai.length() > 0)){
 		    	mv = new MeasureHistory();
 		    	for (int i = 0; i < vai.length(); i++) {
 					JSONObject obj = vai.getJSONObject(i);
-					 um = obj.getString("unit");
+					 um = obj.getString("weight");
 					 id = obj.getString("id");
-					 value = obj.getInt("value");
-					 date = obj.getString("createdAt");
+					 value = obj.getInt("value");					 
+					 date = JaxbUtil.stringToDate(obj.getString("createdAt"));
 					 v = new MeasureHistory.Measure();
 					 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 					 v.setCreated(df.format(date));

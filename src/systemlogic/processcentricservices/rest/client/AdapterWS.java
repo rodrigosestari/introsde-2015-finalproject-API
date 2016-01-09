@@ -26,32 +26,29 @@ public class AdapterWS {
 	static URL url = null;
 	static QName qname = null;
 	static Service service = null;
-	
+
 	static URI uri = null;
 	static String type = "";
 	static Integer idPerson = null;
 
-	public static boolean sendMeasures (int idperson,MeasureHistory v) {
-		
-		
+	public static boolean sendMeasures(int idperson, MeasureHistory v) {
+
 		File xsdFile = new File("resource/measureImport.xsd");
 
 		String xml = JaxbUtil.jaxbToXml("systemlogic.businesslogicservices.jaxb", v, xsdFile);
-		WebTarget service = client.target("https://rodrigo-sestari-final-rest.herokuapp.com/finalprojectrest/adapter/" + idperson);
+		WebTarget service = client
+				.target("https://rodrigo-sestari-final-rest.herokuapp.com/finalprojectrest/adapter/" + idperson);
 
 		Response response = service.request(MediaType.APPLICATION_XML).accept(MediaType.APPLICATION_XML)
 				.post(Entity.xml(xml));
-		int httpStatus =response.getStatus(); 
+		int httpStatus = response.getStatus();
 		xml = response.readEntity(String.class);
 
-		
 		if (httpStatus == 200) {
 			return true;
 		}
 
 		return false;
 	}
-	
-	
 
 }
