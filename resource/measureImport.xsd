@@ -1,12 +1,17 @@
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="goal">
+  <xs:element name="measureHistory">
     <xs:complexType>
       <xs:sequence>
-        <xs:element type="xs:date" name="start"/>
-        <xs:element type="xs:date" name="end"/>
-        <xs:element type="xs:string" name="type"/>
-        <xs:element type="xs:string" name="signal"/>
-        <xs:element type="xs:float" name="value"/>
+        <xs:element name="measure" maxOccurs="unbounded" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="id_ext"/>
+              <xs:element type="xs:double" name="value"/>
+              <xs:element type="xs:string" name="created"/>
+              <xs:element type="xs:string" name="measureType"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:sequence>
     </xs:complexType>
   </xs:element>
